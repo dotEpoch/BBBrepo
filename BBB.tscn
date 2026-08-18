@@ -1,0 +1,49 @@
+[gd_scene format=3 uid="uid://bktdcx0moj3lx"]
+
+[ext_resource type="PackedScene" uid="uid://bs72ogkvdd7d6" path="res://addons/proto_controller/proto_controller.tscn" id="1_2csgd"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_7dm0k"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_ig7tw"]
+sky_material = SubResource("ProceduralSkyMaterial_7dm0k")
+
+[sub_resource type="Environment" id="Environment_0xm2m"]
+background_mode = 2
+sky = SubResource("Sky_ig7tw")
+glow_enabled = true
+
+[sub_resource type="SphereMesh" id="SphereMesh_xa11k"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g2uji"]
+transparency = 1
+cull_mode = 2
+albedo_color = Color(0.99215686, 0.3764706, 0.39215687, 0.23529412)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ig7tw"]
+transparency = 1
+albedo_color = Color(1, 1, 1, 0)
+
+[node name="main" type="Node3D" unique_id=1876836653]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=445393657]
+transform = Transform3D(-0.864294, -0.46374822, 0.1947654, -0.05473474, 0.47163293, 0.8800946, -0.50000006, 0.75, -0.43301266, 0.5876279, 1.2362235, -0.590475)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=807305472]
+environment = SubResource("Environment_0xm2m")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=997081305]
+transform = Transform3D(50, 0, 0, 0, 50, 0, 0, 0, 50, 0, 0, 0)
+mesh = SubResource("SphereMesh_xa11k")
+surface_material_override/0 = SubResource("StandardMaterial3D_g2uji")
+
+[node name="CSGSphere3D" type="CSGSphere3D" parent="MeshInstance3D" unique_id=319236076]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0019304657, 0)
+use_collision = true
+flip_faces = true
+material = SubResource("StandardMaterial3D_ig7tw")
+
+[node name="ProtoController" parent="." unique_id=2077315134 instance=ExtResource("1_2csgd")]
+transform = Transform3D(1.0350782, 0, 0, 0, 1.0350782, 0, 0, 0, 1.0350782, -0.54561377, -0.093503, 0.027006388)
